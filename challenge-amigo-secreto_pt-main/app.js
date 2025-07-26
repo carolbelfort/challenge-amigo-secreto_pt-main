@@ -1,42 +1,52 @@
  //O principal objetivo deste desafio é fortalecer suas habilidades em lógica de programação. Aqui você deverá desenvolver a lógica para resolver o problema.
-const listaDeAmigos = [];
+// Array para armazenar os nomes dos amigos
+let amigos = [];
 
+// Função para adicionar amigos
 function adicionarAmigo() {
-    const campo = document.getElementById("nome-amigo");
+    const input = document.getElementById('amigo');
     const nome = input.value.trim();
 
+    // Validação
     if (nome === "") {
         alert("Por favor, insira um nome.");
         return;
     }
 
-    listaDeAmigos.push(nome);
-    campo.value = "";
-    exibirLista();
+    // Adiciona o nome ao array
+    amigos.push(nome);
+
+    // Limpa o campo de entrada
+    input.value = "";
+
+    // Atualiza a lista na tela
+    atualizarLista();
 }
 
-function exibirLista() {
-    const lista = document.getElementById("lista-amigos");
-    lista.innerHTML = "";
+// Função para atualizar a lista visível de amigos
+function atualizarLista() {
+    const lista = document.getElementById('listaAmigos');
+    lista.innerHTML = ""; // Limpa a lista atual
 
-    for (let i = 0; i < listaDeAmigos.length; i++) {
-        const item = document.createElement("li");
+    for (let i = 0; i < amigos.length; i++) {
+        const item = document.createElement('li');
         item.textContent = amigos[i];
         lista.appendChild(item);
     }
-
 }
 
+// Função para sortear um amigo aleatoriamente
 function sortearAmigo() {
+    const resultado = document.getElementById('resultado');
+
+    // Validação: precisa haver pelo menos um amigo na lista
     if (amigos.length === 0) {
-        alert("A lista de amigos está vazia.");
+        alert("Adicione pelo menos um nome antes de sortear.");
         return;
     }
 
     const indiceSorteado = Math.floor(Math.random() * amigos.length);
-    const amigoSorteado = amigos[indiceSorteado];
+    const nomeSorteado = amigos[indiceSorteado];
 
-    const resultado = document.getElementById("resultado");
-    resultado.innerHTML = `Amigo sorteado: <strong>${amigoSorteado}</strong>`;
-    
+    resultado.innerHTML = `<li>🎉 Amigo sorteado: <strong>${nomeSorteado}</strong></li>`;
 }
